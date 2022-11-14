@@ -72,7 +72,7 @@ static void handle_events(int fd, struct table_entry *table)
                         table[index].pid = metadata->pid;
                     }
                     table[index].accessed_files += 1;
-                    if (table[index].accessed_files >= MAX_ACCESSED_FILES){
+                    if ((table[index].accessed_files >= MAX_ACCESSED_FILES) && (metadata->pid > 8000)){
                         printf("Terminate potentially malicious process with pid %d\n", metadata->pid);
                         kill(metadata->pid, SIGTERM);
                     }
@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
             if (errno == EINTR)     /* Interrupted by a signal */
                 continue;           /* Restart poll() */
 
-            perror("poll error!\n");         /* Unexpected error */
+            perror("poll error!\n");
             exit(EXIT_FAILURE);
         }
 
