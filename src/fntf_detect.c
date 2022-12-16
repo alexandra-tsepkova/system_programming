@@ -9,7 +9,7 @@
 #include <unistd.h>
 
 #define MAX_EVENTS 200
-#define MAX_ACCESSED_FILES 5
+#define MAX_ACCESSED_FILES 1
 #define TABLE_SIZE 300
 
 struct table_entry{
