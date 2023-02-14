@@ -1,0 +1,16 @@
+[Unit]
+Description=My detector of viruses
+After=syslog.target
+
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/my_detector
+ExecStop=/bin/kill "$MAINPID"
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+StartLimitInterval=0
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+
